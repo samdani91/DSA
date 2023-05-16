@@ -29,18 +29,18 @@ void bfs(int start, int nodes) {
     int queue[N];
     int front = 0, rear = 0;
 
-    // Mark start node as visited and enqueue it
+    
     visited[start] = 1;
     queue[rear++] = start;
 
-    // Traverse the graph
+    
     while(front != rear) {
         int current = queue[front++];
 
-        // Process current node
+        
         printf("%d ", current);
 
-        // Enqueue all unvisited neighbors of current node
+        
         for(int i = 1; i <= nodes; i++) {
             if(graph[current][i] == 1 && visited[i] == 0) {
                 visited[i] = 1;

@@ -22,21 +22,21 @@ void bfs(int start, int nodes) {
     int queue[N];
     int front = 0, rear = 0;
 
-    // Initialize distance of all nodes to be infinity
+    
     for(int i = 1; i <= nodes; i++) {
         distance[i] = INT_MAX;
     }
 
-    // Mark start node as visited and enqueue it with distance 0
+    
     visited[start] = true;
     distance[start] = 0;
     queue[rear++] = start;
 
-    // Traverse the graph
+    
     while(front != rear) {
         int current = queue[front++];
 
-        // Enqueue all unvisited neighbors of current node
+        
         for(int i = 1; i <= nodes; i++) {
             if(graph[current][i] == 1 && visited[i] == false) {
                 visited[i] = true;
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
 
     create_graph(nodes, edges);
 
-    // Perform BFS to find shortest path
+    
     printf("Enter the starting node: ");
     scanf("%d", &start);
     bfs(start, nodes);
