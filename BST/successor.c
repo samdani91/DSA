@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
     if (output != -1)
         printf("Successor of %d: %d\n", data, output);
     else
-        printf("No successor found for %d\n", data);
+        printf("No successor found\n");
 
     return 0;
 }
