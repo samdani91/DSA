@@ -32,13 +32,6 @@ int find_min(struct tree *root){
 
 }
 
-int successor(struct tree* root,int data){
-    if(root->right!=NULL){
-        return find_min(root->right);
-    }else{
-        
-    }
-}
 struct tree *search(struct tree *root,int key){
     if(root==NULL) return NULL;
 
@@ -53,6 +46,37 @@ struct tree *search(struct tree *root,int key){
 
     
 }
+
+int successor(struct tree* root, int data) {
+    if (root == NULL)
+        return -1; 
+
+    struct tree* targetNode = search(root, data);
+
+    if (targetNode == NULL)
+        return -1; 
+
+    if (targetNode->right != NULL)
+        return find_min(targetNode->right);
+
+    struct tree* successor = NULL;
+    struct tree* ancestor = root;
+
+    while (ancestor != targetNode) {
+        if (data < ancestor->data) {
+            successor = ancestor;
+            ancestor = ancestor->left;
+        } else {
+            ancestor = ancestor->right;
+        }
+    }
+
+    if (successor == NULL)
+        return -1; 
+
+    return successor->data;
+}
+
 void inorder(struct tree *root)
 {
     if(root==NULL)
@@ -62,21 +86,26 @@ void inorder(struct tree *root)
     inorder(root->right);
 }
 
-int main(int argc,char *argv[])
-{
+int main(int argc, char *argv[]) {
+    int arr[] = {15, 6, 3, 2, 4, 7, 13, 9, 18, 17, 20};
+    int size = sizeof(arr) / sizeof(arr[0]);
 
-    int arr[]={15,6,3,2,4,7,13,9,18,17,20};
-
-    for(int i=0;i<11;i++){
-        root=build(root,arr[i]);
+    for (int i = 0; i < size; i++) {
+        root = build(root, arr[i]);
     }
+
+    printf("Inorder traversal of the tree: ");
     inorder(root);
 
     int data;
-    printf("\nEnter node to see successor:");
-    scanf("%d",&data);
+    printf("\nEnter a node to find its successor: ");
+    scanf("%d", &data);
 
-    int output=successor(search(root,data),data);
-    printf("Successor of %d : %d\n",data,output);
+    int output = successor(root, data);
+    if (output != -1)
+        printf("Successor of %d: %d\n", data, output);
+    else
+        printf("No successor found for %d\n", data);
+
     return 0;
 }
