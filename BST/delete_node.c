@@ -54,7 +54,7 @@ struct tree *build(struct tree* root,int data)
 
 }
 
-struct tree *delete_node(struct tree* root,int key){
+struct tree *delete_node(struct tree* root,int key){ 
     if(root->data > key){
         root->left=delete_node(root->left,key);
     }else if(root->data < key){
