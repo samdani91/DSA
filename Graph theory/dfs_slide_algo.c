@@ -32,7 +32,7 @@ void dfs_visit(int u,int nodes){
     time=time+1;
     f[u]=time;
 }
-void dfs(int start, int nodes) {
+void dfs(int nodes) {
 
     for (int i = 1; i <= nodes; i++) {
         color[i] = 0; // 0 represents white color
@@ -67,10 +67,8 @@ int main(int argc,char *argv[])
     scanf("%d %d",&nodes,&edges);
     creat_graph(nodes,edges); 
 
-    printf("Enter the starting node: ");
-    scanf("%d", &start);
     printf("DFS traversal: ");
-    dfs(start, nodes);
+    dfs( nodes);
 
     printf("Connected components:%d\n",cc);
 
