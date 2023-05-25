@@ -4,6 +4,8 @@
 void heapify(int cbt[],int i);
 void insert(int cbt[],int newNode);
 void doInsert(int cbt[],int index);
+void delete(int cbt[], int deleteNode);
+int extractRoot(int cbt[]);
 void swap(int *a,int *b);
 void print(int cbt[]);
 
@@ -12,7 +14,7 @@ int size=0;
 int main(int argc,char *argv[])
 {
 
-    int cbt[10]={3,9,2,7,4,5}; 
+    int cbt[10]={3,9,2,7,4,5}; //cbt-> complete binary tree
     int ins,del;
     for(int i=0;i<10;i++){
         if(cbt[i]!=0) size++;
@@ -27,7 +29,15 @@ int main(int argc,char *argv[])
     scanf("%d",&ins);
     insert(cbt,ins);
     print(cbt);
-   
+    printf("Enter node to delete:");
+    scanf("%d",&del);
+    delete(cbt,del);
+    print(cbt);
+
+    int root=extractRoot(cbt);
+    printf("Root:%d\n",root);
+
+    print(cbt);
 
     return 0;
 }
@@ -68,6 +78,30 @@ void doInsert(int *cbt,int index){
         swap(&cbt[parent],&cbt[index]);
         doInsert(cbt,parent);
     }
+}
+void delete(int cbt[], int deleteNode) {
+    int i;
+    for (i = 0; i < size; i++) {
+        if (deleteNode == cbt[i])
+            break;
+    }
+    if (i == size) {
+        printf("Node not found in the heap.\n");
+        return;
+    }
+
+    swap(&cbt[i], &cbt[size - 1]);
+    size--;
+
+    heapify(cbt, i);
+}
+int extractRoot(int cbt[]){
+    int x=cbt[0];
+    swap(&cbt[0],&cbt[size-1]);
+    size--;
+    heapify(cbt,0);
+
+    return x;
 }
 void print(int cbt[]){
     for(int i=0;i<size;i++){
