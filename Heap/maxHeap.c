@@ -13,7 +13,7 @@ void swap(int *a,int *b);
 void print(int cbt[]);
 int extractRoot(int *cbt);
 
-int size=0;
+int size;
 
 int main(int argc,char *argv[])
 {
@@ -27,6 +27,7 @@ int main(int argc,char *argv[])
     for(int i=(size/2)-1;i>=0;i--){
         heapify(cbt,i);
     }
+    
     print(cbt);
     printf("Enter node to insert:");
     scanf("%d",&ins);
@@ -66,14 +67,11 @@ void heapify(int *cbt,int i){
     
 }
 void insert(int cbt[],int newNode){
-    if(size==0){
-        cbt[0]=newNode;
-        size++;
-    }else{
-        cbt[size]=newNode;
-        doInsert(cbt,size);
-        size++;
-    }
+    
+    cbt[size]=newNode;
+    doInsert(cbt,size);
+    size++;
+
 }
 void doInsert(int cbt[],int index){
     int parent=(index-1)/2;
