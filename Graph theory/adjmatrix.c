@@ -10,9 +10,7 @@ void creat_graph(int nodes,int edges){
         scanf("%d %d",&u,&v);
         graph[u][v]=1;
         graph[v][u]=1;   
-
     }
-    
 }
 
 void print_graph(int nodes){
